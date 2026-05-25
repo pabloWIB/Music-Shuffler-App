@@ -1,0 +1,244 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  font-size: 18px;
+  background: #f0f4f8;
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 64px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-icon {
+  color: #2563eb;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.dropzone {
+  border: 2.5px dashed #bfdbfe;
+  border-radius: 14px;
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  background: #f8faff;
+  user-select: none;
+}
+
+.dropzone:hover,
+.dropzone.active {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
+.dropzone-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+.dropzone-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.dropzone-sub {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+.divider {
+  height: 1px;
+  background: #f3f4f6;
+}
+
+.file-count {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e3a8a;
+}
+
+.file-count-number {
+  color: #2563eb;
+}
+
+.file-count-mixed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #16a34a;
+  margin-top: 8px;
+}
+
+.btn {
+  width: 100%;
+  min-height: 72px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: 0.03em;
+}
+
+.btn:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.btn-mezclar {
+  background: #AD7FA8;
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(173, 127, 168, 0.3);
+}
+
+.btn-mezclar:hover:not(:disabled) {
+  background: #9a6b95;
+  box-shadow: 0 4px 20px rgba(173, 127, 168, 0.45);
+}
+
+.btn-descargar {
+  background: #7a4d75;
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(122, 77, 117, 0.25);
+}
+
+.btn-descargar:hover:not(:disabled) {
+  background: #6b4067;
+  box-shadow: 0 4px 20px rgba(122, 77, 117, 0.38);
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  padding: 18px 20px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.reset-wrap {
+  text-align: center;
+}
+
+.btn-reset {
+  background: none;
+  border: 1.5px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-reset:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  body { padding: 24px 12px 48px; }
+  .card { padding: 28px 20px; gap: 16px; }
+  h1 { font-size: 1.6rem; }
+  .btn { font-size: 1.1rem; min-height: 64px; }
+  .file-count { font-size: 1.3rem; }
+}
