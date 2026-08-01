@@ -1,0 +1,141 @@
+/* Design tokens, reset and base typography. Loaded first. */
+
+:root {
+  /* Brand — the app icon is blue, and blue was already the accent colour of the
+     headings, labels and dropzone. Darkened from the original #2563EB until
+     every text pairing clears 7:1, the contrast the spec asks for. */
+  --color-brand: #1e40af;
+  --color-brand-dark: #17307f;
+  --color-brand-tint: #f2f6fd;
+  --color-brand-border: #c3d5f5;
+
+  /* Neutrals */
+  --color-bg: #f1f5f9;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #414f61;
+  --color-border: #dde5ee;
+  --color-border-strong: #b9c6d6;
+
+  /* Semantic */
+  --color-success: #145c2c;
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #9ae0b4;
+  --color-danger: #9b1c26;
+  --color-danger-bg: #fdf2f3;
+  --color-danger-border: #f0c2c6;
+
+  /* Spacing scale — 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  /* Type scale */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.9375rem;
+  --font-size-base: 1.125rem;
+  --font-size-lg: 1.375rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --line-height-tight: 1.2;
+  --line-height-base: 1.55;
+
+  /* Radii, elevation, motion */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-raised: 0 2px 8px rgba(23, 48, 127, 0.24);
+  --transition: 180ms ease;
+
+  /* Layout */
+  --card-max-width: 560px;
+  --measure: 62ch;
+  --tap-target: 44px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Base */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+}
+
+p {
+  max-width: var(--measure);
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-brand-dark);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+}

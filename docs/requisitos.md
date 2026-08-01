@@ -1,4 +1,10 @@
-# REQUIREMENTS.md — Mezclador de Música
+# Requisitos — Mezclador de Música
+
+> **Documento histórico.** Esta es la especificación original con la que se
+> construyó la app. Se conserva tal cual como registro de lo que se pidió; el
+> apartado 7 propone una estructura de carpetas que ya no es la que tiene el
+> proyecto. Para la estructura y el comportamiento actuales, ver
+> [`cambios.md`](cambios.md) y el `README.md` de la raíz.
 
 > Build instructions for Claude Code. Read this fully before writing any code.
 > This is a **simple, client-side, no-database** web app. Do **not** add a backend, database, authentication, or any server logic. Everything runs in the browser.
