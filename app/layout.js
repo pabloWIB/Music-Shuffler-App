@@ -2,11 +2,12 @@ import "../styles/base.css";
 import "../styles/layout.css";
 import "../styles/components.css";
 import { site } from "../lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Mezclador de Música — mezcla tus canciones para el USB",
+    default: "WIB - Mezclador de Música · mezcla tus canciones para el USB",
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -24,7 +25,7 @@ export const metadata = {
     url: site.url,
     siteName: site.name,
     locale: site.locale,
-    title: "Mezclador de Música — mezcla tus canciones para el USB",
+    title: "WIB - Mezclador de Música · mezcla tus canciones para el USB",
     description: site.description,
   },
   robots: {
@@ -60,7 +61,8 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body>{children}</body>
+      <body>{children}  <Analytics />
+      </body>
     </html>
   );
 }
