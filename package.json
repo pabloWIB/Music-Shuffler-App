@@ -2,12 +2,13 @@
   "name": "mezclador-de-musica",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Renames a folder of songs with random leading numbers and returns them as a ZIP, so a car stereo that plays in filename order stops grouping every genre together.",
   "homepage": "https://mezcladordemusica.wib.digital",
   "author": "Pablo Nieto Pérez (https://wib.digital)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pabloWIB/Mezclador-de-Musica.git"
+    "url": "https://github.com/pabloWIB/Music-Shuffler-App.git"
   },
   "engines": {
     "node": ">=20.0.0"
