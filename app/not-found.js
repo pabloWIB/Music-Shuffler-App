@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { HomeIcon } from "../components/icons";
 
 export const metadata = {
   title: "Página no encontrada",
@@ -9,19 +8,19 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="page page--centered">
-      <main className="site-main">
-        <div className="card notice">
-          <h1>Esta página no existe</h1>
-          <p>
-            La dirección que abriste no corresponde a ninguna parte del
-            mezclador. Vuelve al inicio para agregar tus canciones.
-          </p>
-          <Link className="btn btn--secondary" href="/">
-            <HomeIcon size={24} strokeWidth={2.2} />
-            Volver al inicio
-          </Link>
-        </div>
+    <div className="page">
+      <main className="site-main notice">
+        <p className="notice__code" aria-hidden="true">
+          404
+        </p>
+        <h1>Esta página no existe</h1>
+        <p>
+          La dirección que abriste no corresponde a ninguna parte del
+          mezclador. Vuelve al inicio para agregar tus canciones.
+        </p>
+        <Link className="btn btn--secondary notice__action" href="/">
+          Volver al inicio
+        </Link>
       </main>
     </div>
   );

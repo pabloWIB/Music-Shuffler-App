@@ -19,8 +19,8 @@ export default function OpengraphImage() {
           justifyContent: "center",
           gap: 32,
           padding: 96,
-          background: "#f1f5f9",
-          borderBottom: "24px solid #1e40af",
+          background: "#f6f4ef",
+          borderBottom: "24px solid #002ba4",
         }}
       >
         <div
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             fontWeight: 700,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#1e40af",
+            color: "#002ba4",
           }}
         >
           001 · 002 · 003
@@ -41,7 +41,7 @@ export default function OpengraphImage() {
             fontSize: 86,
             fontWeight: 800,
             letterSpacing: -2,
-            color: "#0f172a",
+            color: "#16150f",
           }}
         >
           {site.name}
@@ -51,7 +51,7 @@ export default function OpengraphImage() {
             display: "flex",
             fontSize: 38,
             lineHeight: 1.4,
-            color: "#414f61",
+            color: "#4b483f",
             maxWidth: 900,
           }}
         >

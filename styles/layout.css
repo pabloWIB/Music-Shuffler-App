@@ -1,126 +1,98 @@
 /* Page shell: header, main column, footer. Mobile-first. */
 
+/* One solid brand rule across the top, the same device the OG image uses. */
+body {
+  border-top: 8px solid var(--color-brand);
+}
+
 .page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: var(--space-5);
-  min-height: 100vh;
-  padding: var(--space-4) var(--space-3) var(--space-6);
+  width: 100%;
+  max-width: calc(var(--column) + 2 * var(--space-3));
+  min-height: calc(100vh - 8px);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3) var(--space-4);
 }
 
 .site-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  text-align: center;
-  width: 100%;
-  max-width: var(--card-max-width);
+  gap: var(--space-3);
 }
 
-.site-header__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--space-7);
-  height: var(--space-7);
-  border-radius: 50%;
-  background: var(--color-brand-tint);
-  border: 1px solid var(--color-brand-border);
-  color: var(--color-brand);
-}
-
-.site-header__subtitle {
-  font-size: var(--font-size-sm);
+.site-header__lead {
+  font-size: var(--font-size-base);
   color: var(--color-text-muted);
-  max-width: 46ch;
+  max-width: 40ch;
+}
+
+.site-header__privacy {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
 }
 
 .site-main {
   width: 100%;
-  max-width: var(--card-max-width);
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  padding: var(--space-4) var(--space-3);
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.divider {
-  height: 1px;
-  background: var(--color-border);
-  border: 0;
 }
 
 .site-footer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
-  width: 100%;
-  max-width: var(--card-max-width);
-  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
   font-size: var(--font-size-xs);
   line-height: 1.6;
   color: var(--color-text-muted);
-}
-
-.site-footer p {
-  max-width: 46ch;
 }
 
 .site-footer a {
   display: inline-flex;
   align-items: center;
   min-height: var(--tap-target);
-  padding: 0 var(--space-1);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* Error page shares the shell but centres its single card. */
-.page--centered {
-  justify-content: center;
-}
-
+/* 404: the shell with a single left-aligned block. */
 .notice {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
-  text-align: center;
+  padding-top: var(--space-6);
+}
+
+.notice__code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.notice__action {
+  margin-top: var(--space-3);
 }
 
 @media (min-width: 480px) {
   .page {
-    padding: var(--space-5) var(--space-4) var(--space-7);
+    padding: var(--space-6) var(--space-4) var(--space-4);
   }
 
-  .card {
-    padding: var(--space-5) var(--space-4);
+  .notice__action {
+    width: auto;
+    padding: 0 var(--space-5);
   }
 }
 
 @media (min-width: 768px) {
   .page {
+    max-width: calc(var(--column) + 2 * var(--space-4));
     gap: var(--space-6);
-    padding: var(--space-6) var(--space-4) var(--space-8);
-  }
-
-  .card {
-    padding: var(--space-6) var(--space-5);
-    gap: var(--space-5);
+    padding-top: var(--space-7);
   }
 }
