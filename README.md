@@ -6,6 +6,16 @@ Renames a folder of songs with random leading numbers and returns them as a ZIP,
 [![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.18-000000)](https://nextjs.org)
 
+<p align="center">
+  <img src="docs/capturas/escritorio-2-mezclado.png" alt="Mezclador de Música en escritorio, con 8 canciones listas y ya mezcladas" width="560">
+  &nbsp;
+  <img src="docs/capturas/movil-2-mezclado.png" alt="Mezclador de Música en el celular" width="200">
+</p>
+
+> **En español:** arrastra tus canciones, toca **MEZCLAR** y descarga un ZIP con los archivos renombrados
+> `001 - `, `002 - `… en orden aleatorio. Al copiarlos a la USB, el radio del carro los toca mezclados en vez
+> de agrupados por género. Todo corre en el navegador: las canciones no salen de tu computador.
+
 ## Description
 
 A car stereo reading songs off a USB stick sorts them by filename. If the music is organised in folders by genre — vallenato, tango, salsa, cumbia — the stereo plays forty vallenatos, then forty tangos. There is no shuffle button on the unit, and the owner is not going to rename four hundred files by hand.
@@ -45,8 +55,8 @@ Three runtime dependencies in total. Fonts are the system stack, so the page mak
 ## Installation
 
 ```bash
-git clone https://github.com/pabloWIB/Music-Shuffler-App.git
-cd Music-Shuffler-App
+git clone https://github.com/pabloWIB/Mezclador-de-Musica.git
+cd Mezclador-de-Musica
 npm install
 npm run dev
 ```
@@ -135,6 +145,13 @@ The end user is elderly, Spanish-speaking and has reduced vision, so the spec in
 ## Deployment
 
 Deployed on Vercel at [mezcladordemusica.wib.digital](https://mezcladordemusica.wib.digital). No environment variables, no backend, no build-time configuration — `git push` triggers the deploy.
+
+## Contributing
+
+Ideas and pull requests are welcome, in English or Spanish. Issues labelled
+[`good first issue`](https://github.com/pabloWIB/Mezclador-de-Musica/labels/good%20first%20issue) are small and
+self-contained. Keep the spirit of the app: no backend, no account, nothing uploaded, and a UI that an
+elderly, non-technical user can read.
 
 ## Author
 

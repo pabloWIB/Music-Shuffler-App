@@ -7,7 +7,7 @@
   "author": "Pablo Nieto Pérez (https://wib.digital)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pabloWIB/Music-Shuffler-App.git"
+    "url": "https://github.com/pabloWIB/Mezclador-de-Musica.git"
   },
   "engines": {
     "node": ">=20.0.0"
