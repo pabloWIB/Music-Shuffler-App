@@ -55,8 +55,8 @@ Three runtime dependencies in total. Fonts are the system stack, so the page mak
 ## Installation
 
 ```bash
-git clone https://github.com/pabloWIB/Mezclador-de-Musica.git
-cd Mezclador-de-Musica
+git clone https://github.com/pabloWIB/Music-Shuffler-App.git
+cd Music-Shuffler-App
 npm install
 npm run dev
 ```
@@ -149,9 +149,13 @@ Deployed on Vercel at [mezcladordemusica.wib.digital](https://mezcladordemusica.
 ## Contributing
 
 Ideas and pull requests are welcome, in English or Spanish. Issues labelled
-[`good first issue`](https://github.com/pabloWIB/Mezclador-de-Musica/labels/good%20first%20issue) are small and
+[`good first issue`](https://github.com/pabloWIB/Music-Shuffler-App/labels/good%20first%20issue) are small and
 self-contained. Keep the spirit of the app: no backend, no account, nothing uploaded, and a UI that an
 elderly, non-technical user can read.
+
+## License
+
+[MIT](LICENSE) © 2026 Pablo Nieto Pérez
 
 ## Author
 
