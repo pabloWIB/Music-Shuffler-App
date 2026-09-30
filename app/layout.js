@@ -3,6 +3,26 @@ import "../styles/layout.css";
 import "../styles/components.css";
 import { site } from "../lib/site";
 import { Analytics } from "@vercel/analytics/next";
+import {
+  Atkinson_Hyperlegible_Mono,
+  Atkinson_Hyperlegible_Next,
+} from "next/font/google";
+
+// Atkinson Hyperlegible was drawn by the Braille Institute for low-vision
+// readers, which is who this app is for. next/font self-hosts both files at
+// build time, so the page still makes no request to Google.
+const sans = Atkinson_Hyperlegible_Next({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-atkinson",
+});
+
+// The mono cut sets the 001, 002, 003 numbering: the numbers are the product.
+const mono = Atkinson_Hyperlegible_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-atkinson-mono",
+});
 
 export const metadata = {
   metadataBase: new URL(site.url),
@@ -54,14 +74,16 @@ const personSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${sans.variable} ${mono.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
       </head>
-      <body>{children}  <Analytics />
+      <body>
+        {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -1,17 +1,22 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { MusicNoteIcon } from "./icons";
+import { collectDroppedFiles } from "../lib/drop";
 
 const INPUT_ID = "song-input";
+const HINT_ID = "song-input-hint";
 
 /**
  * A real `<label>` over a focusable-but-hidden `<input type="file">`: the browser
  * gives us click, Enter and Space for free, so there is no `role="button"` and
  * no synthetic `.click()` to re-dispatch.
+ *
+ * Once there are songs, `compact` shrinks the zone to one row so the next step
+ * moves up the screen.
  */
-export function DropZone({ inputRef, onFilesAdded }) {
+export function DropZone({ inputRef, compact, onFilesAdded }) {
   const [dragging, setDragging] = useState(false);
+  const [reading, setReading] = useState(false);
 
   const handleDragOver = useCallback((event) => {
     event.preventDefault();
@@ -25,22 +30,40 @@ export function DropZone({ inputRef, onFilesAdded }) {
   }, []);
 
   const handleDrop = useCallback(
-    (event) => {
+    async (event) => {
       event.preventDefault();
       setDragging(false);
-      onFilesAdded(event.dataTransfer.files);
+      if (reading) return;
+      const pending = collectDroppedFiles(event.dataTransfer);
+      setReading(true);
+      try {
+        onFilesAdded(await pending);
+      } finally {
+        setReading(false);
+      }
+    },
+    [onFilesAdded, reading]
+  );
+
+  const handleChange = useCallback(
+    (event) => {
+      const picked = Array.from(event.target.files ?? []);
+      // Clear the input so picking the same files again still fires `change`.
+      event.target.value = "";
+      onFilesAdded(picked);
     },
     [onFilesAdded]
   );
 
-  const handleChange = useCallback(
-    (event) => onFilesAdded(event.target.files),
-    [onFilesAdded]
-  );
+  let text = "Arrastra aquí tus canciones o sus carpetas";
+  if (reading) text = "Buscando canciones…";
+  else if (compact) text = "¿Faltan canciones? Arrástralas aquí";
 
   return (
     <div
-      className={`dropzone${dragging ? " is-active" : ""}`}
+      className={`dropzone${compact ? " dropzone--compact" : ""}${
+        dragging ? " is-active" : ""
+      }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -52,15 +75,18 @@ export function DropZone({ inputRef, onFilesAdded }) {
         type="file"
         accept="audio/*,.mp3,.m4a"
         multiple
+        aria-describedby={compact ? undefined : HINT_ID}
         onChange={handleChange}
       />
       <label className="dropzone__label" htmlFor={INPUT_ID}>
-        <span className="dropzone__icon">
-          <MusicNoteIcon size={52} strokeWidth={1.4} />
-        </span>
-        <span className="dropzone__text">Arrastra tus canciones aquí</span>
-        <span className="dropzone__hint">
-          o toca este recuadro para buscarlas en tu computador
+        <span className="dropzone__text">{text}</span>
+        {!compact && (
+          <span className="dropzone__hint" id={HINT_ID} aria-hidden="true">
+            Sirven archivos MP3 y M4A.
+          </span>
+        )}
+        <span className="dropzone__button" aria-hidden="true">
+          {compact ? "Elegir más" : "Elegir canciones"}
         </span>
       </label>
     </div>

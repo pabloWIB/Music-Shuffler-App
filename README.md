@@ -12,7 +12,7 @@ Renames a folder of songs with random leading numbers and returns them as a ZIP,
   <img src="docs/capturas/movil-2-mezclado.png" alt="Mezclador de Música en el celular" width="200">
 </p>
 
-> **En español:** arrastra tus canciones, toca **MEZCLAR** y descarga un ZIP con los archivos renombrados
+> **En español:** arrastra tus canciones, toca **Mezclar** y descarga un ZIP con los archivos renombrados
 > `001 - `, `002 - `… en orden aleatorio. Al copiarlos a la USB, el radio del carro los toca mezclados en vez
 > de agrupados por género. Todo corre en el navegador: las canciones no salen de tu computador.
 
@@ -26,8 +26,9 @@ A browser cannot rename files in place on a USB drive, so the app returns rename
 
 ## Features
 
-- Drag and drop, or pick files through the system dialog.
-- Accepts `.mp3` and `.m4a`, checked by MIME type first and file extension as a fallback. Anything else is ignored silently.
+- Drag and drop files or whole folders (subfolders included), or pick files through the system dialog.
+- Accepts `.mp3` and `.m4a`, checked by MIME type first and file extension as a fallback. Anything else is skipped; if a drop adds nothing, the page says why.
+- After mixing, the first five new filenames are listed so the shuffle is visible before downloading.
 - Duplicate filenames are skipped, so dropping the same batch twice does not double it.
 - Fisher-Yates shuffle, with the number width derived from the total — 400 songs produce `001`, not `1`.
 - Live progress percentage while the archive is built, from JSZip's progress callback.
@@ -42,10 +43,10 @@ A browser cannot rename files in place on a USB drive, so the app returns rename
 | UI library | React | 18.3.1 | Component state |
 | Archiving | JSZip | 3.10.1 | Builds the ZIP in the browser |
 | Styling | Plain CSS | — | Custom properties, no framework |
-| Icons | Inline SVG | — | Hand-written components, no icon dependency |
+| Type | Atkinson Hyperlegible Next + Mono | — | Designed for low-vision readers, self-hosted by `next/font` |
 | Language | JavaScript | — | No TypeScript in this project |
 
-Three runtime dependencies in total. Fonts are the system stack, so the page makes no third-party requests at all.
+Three runtime dependencies in total. `next/font` downloads the fonts at build time and serves them from the site, so the page makes no third-party requests at runtime.
 
 ## Prerequisites
 
@@ -66,8 +67,8 @@ Open `http://localhost:3000`.
 ## Usage
 
 1. Drag the songs onto the drop zone, or click it to open the file picker.
-2. Press **MEZCLAR** to shuffle and renumber.
-3. Press **DESCARGAR** to get `musica-mezclada.zip`, then copy its contents to the USB stick.
+2. Press **Mezclar** to shuffle and renumber.
+3. Press **Descargar** to get `musica-mezclada.zip`, then copy its contents to the USB stick.
 
 The renaming rule lives in `lib/audio.js`:
 
@@ -103,17 +104,17 @@ app/
 └── apple-icon.png       # 180x180
 components/
 ├── music-mixer.js       # Client Component: all the state lives here
-├── drop-zone.js         # <label> over a hidden file input
-└── icons.js             # Seven inline SVG icons
+└── drop-zone.js         # <label> over a hidden file input
 lib/
 ├── audio.js             # File-type detection and the renaming rule
+├── drop.js              # Reads dropped folders into a flat file list
 ├── shuffle.js           # Fisher-Yates
 ├── zip.js               # Archive building and blob download
 └── site.js              # Name, URL, description, brand colours
 styles/
 ├── base.css             # Custom properties, reset, base typography
-├── layout.css           # Page shell: header, main, card, footer
-└── components.css       # Dropzone, counter, buttons, alerts, progress
+├── layout.css           # Page shell: header, main, footer
+└── components.css       # Steps, dropzone, buttons, preview, messages, progress
 public/
 ├── icon-192.png         # PWA icon
 └── icon-512.png         # PWA icon
@@ -136,10 +137,12 @@ next.config.js
 
 The end user is elderly, Spanish-speaking and has reduced vision, so the spec in `docs/requisitos.md` sets a 7:1 contrast target — one level above WCAG AA.
 
-- Every text colour measured against its rendered background clears 7:1 (4.5:1 for large text). The lowest measured value is 7.62:1.
+- Every text colour measured against its rendered background clears 7:1. The lowest is 7.61:1 (error text on its tint).
+- The UI is flat: no shadows and no gradients, so every edge is a solid line with real contrast.
+- Each step's number square shows where the user is: blue for the step to do now, ink once done, grey until it can be reached. Disabled buttons keep a readable label and a line below says what to do first.
 - The drop zone is a `<label>` over a focusable file input, so click, Enter and Space all work without custom key handling.
 - Primary buttons are 72px tall; every other interactive target is at least 44×44px.
-- The song counter and both alerts are live regions, so a screen reader announces the count, the success message and any error.
+- One polite live region announces each change (songs added, new first song after a shuffle, download ready); errors use `role="alert"`.
 - Verified with no horizontal scroll at 360, 480, 768, 1024 and 1440px.
 
 ## Deployment

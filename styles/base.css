@@ -1,29 +1,28 @@
 /* Design tokens, reset and base typography. Loaded first. */
 
 :root {
-  /* Brand — the app icon is blue, and blue was already the accent colour of the
-     headings, labels and dropzone. Darkened from the original #2563EB until
-     every text pairing clears 7:1, the contrast the spec asks for. */
-  --color-brand: #1e40af;
-  --color-brand-dark: #17307f;
-  --color-brand-tint: #f2f6fd;
-  --color-brand-border: #c3d5f5;
+  /* Brand — sampled from the WIB app icon (#002BA4). 11:1 on white and 10:1 on
+     the page background, so it carries text as well as fills. */
+  --color-brand: #002ba4;
+  --color-brand-dark: #001d73;
+  --color-brand-darker: #00145a;
+  --color-brand-wash: #e9edf8;
 
-  /* Neutrals */
-  --color-bg: #f1f5f9;
+  /* Neutrals — warm paper and near-black ink. Every text pairing clears 7:1. */
+  --color-bg: #f6f4ef;
   --color-surface: #ffffff;
-  --color-text: #0f172a;
-  --color-text-muted: #414f61;
-  --color-border: #dde5ee;
-  --color-border-strong: #b9c6d6;
+  --color-text: #16150f;
+  --color-text-muted: #4b483f;
+  --color-line: #d9d4c7;
+  --color-line-strong: #16150f;
+  /* Pending step numbers and disabled outlines only; never body text. */
+  --color-idle: #8a8576;
 
   /* Semantic */
-  --color-success: #145c2c;
-  --color-success-bg: #f0fdf4;
-  --color-success-border: #9ae0b4;
-  --color-danger: #9b1c26;
-  --color-danger-bg: #fdf2f3;
-  --color-danger-border: #f0c2c6;
+  --color-success: #0f5226;
+  --color-success-bg: #e3efe2;
+  --color-danger: #8f1520;
+  --color-danger-bg: #f9e6e4;
 
   /* Spacing scale — 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 */
   --space-1: 4px;
@@ -35,27 +34,27 @@
   --space-7: 64px;
   --space-8: 96px;
 
-  /* Type scale */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-size-xs: 0.8125rem;
-  --font-size-sm: 0.9375rem;
+  /* Type — the Atkinson variables come from next/font in app/layout.js. */
+  --font-sans: var(--font-atkinson), system-ui, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  --font-mono: var(--font-atkinson-mono), ui-monospace, "Cascadia Mono",
+    Consolas, monospace;
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 1rem;
   --font-size-base: 1.125rem;
-  --font-size-lg: 1.375rem;
-  --font-size-xl: 1.75rem;
-  --font-size-2xl: 2.25rem;
-  --line-height-tight: 1.2;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2.25rem;
+  --font-size-2xl: 3rem;
+  --line-height-tight: 1.15;
   --line-height-base: 1.55;
 
-  /* Radii, elevation, motion */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
-  --shadow-raised: 0 2px 8px rgba(23, 48, 127, 0.24);
-  --transition: 180ms ease;
+  /* Shape and motion. Flat on purpose: no shadows, no gradients. */
+  --radius: 4px;
+  --border: 2px;
+  --transition: 150ms ease;
 
   /* Layout */
-  --card-max-width: 560px;
+  --column: 640px;
   --measure: 62ch;
   --tap-target: 44px;
 }
@@ -89,7 +88,7 @@ h1 {
   font-size: var(--font-size-xl);
   font-weight: 800;
   line-height: var(--line-height-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 h2 {
@@ -115,12 +114,24 @@ a {
 
 a:hover {
   color: var(--color-brand-dark);
+  text-decoration-thickness: 2px;
 }
 
 :focus-visible {
   outline: 3px solid var(--color-brand);
   outline-offset: 3px;
-  border-radius: var(--radius-sm);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

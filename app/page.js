@@ -1,18 +1,17 @@
 import { MusicMixer } from "../components/music-mixer";
-import { MusicNotesIcon } from "../components/icons";
 import { site } from "../lib/site";
 
 export default function HomePage() {
   return (
     <div className="page">
       <header className="site-header">
-        <span className="site-header__icon">
-          <MusicNotesIcon size={32} strokeWidth={1.8} />
-        </span>
         <h1>{site.name}</h1>
-        <p className="site-header__subtitle">
-          Mezcla tus canciones para que el carro las toque en desorden y no
-          agrupadas por género.
+        <p className="site-header__lead">
+          Cambia el orden de tus canciones para que el radio del carro las toque
+          mezcladas y no agrupadas por género.
+        </p>
+        <p className="site-header__privacy">
+          Nada se sube a internet: todo pasa en tu computador.
         </p>
       </header>
 
@@ -21,10 +20,6 @@ export default function HomePage() {
       </main>
 
       <footer className="site-footer">
-        <p>
-          Tus canciones no salen de tu computador: todo el trabajo lo hace este
-          navegador.
-        </p>
         <p>
           Hecho por{" "}
           <a href="https://wib.digital" rel="noopener">
@@ -40,7 +35,7 @@ export default function HomePage() {
           >
             wib.digital
           </a>{" "}
-          —{" "}
+          ·{" "}
           <a
             href="https://www.fiverr.com/pablonietop"
             target="_blank"
