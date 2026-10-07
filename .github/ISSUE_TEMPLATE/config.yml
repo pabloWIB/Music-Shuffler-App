@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and ideas · Preguntas e ideas
+    url: https://github.com/pabloWIB/Music-Shuffler-App/discussions
+    about: Ask anything or share an idea before opening an issue · Pregunta o comparte una idea antes de abrir un issue
