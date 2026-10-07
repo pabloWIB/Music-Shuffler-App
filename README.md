@@ -3,11 +3,11 @@
 Renames a folder of songs with random leading numbers and returns them as a ZIP, so a car stereo that plays in filename order stops grouping every genre together.
 
 [![Live demo](https://img.shields.io/badge/demo-mezcladordemusica.wib.digital-2ea44f)](https://mezcladordemusica.wib.digital)
-[![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
+[![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on%20Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.18-000000)](https://nextjs.org)
 
 <p align="center">
-  <img src="docs/capturas/escritorio-2-mezclado.png" alt="Mezclador de Música en escritorio, con 8 canciones listas y ya mezcladas" width="560">
+  <a href="https://mezcladordemusica.wib.digital"><img src="docs/demo.gif" alt="Adding 12 songs grouped by genre, pressing Mezclar and downloading them shuffled" width="560"></a>
   &nbsp;
   <img src="docs/capturas/movil-2-mezclado.png" alt="Mezclador de Música en el celular" width="200">
 </p>
@@ -155,6 +155,10 @@ Ideas and pull requests are welcome, in English or Spanish. Issues labelled
 [`good first issue`](https://github.com/pabloWIB/Music-Shuffler-App/labels/good%20first%20issue) are small and
 self-contained. Keep the spirit of the app: no backend, no account, nothing uploaded, and a UI that an
 elderly, non-technical user can read.
+
+**Hacktoberfest:** this repo takes part. A merged pull request that closes one of the
+[open issues](https://github.com/pabloWIB/Music-Shuffler-App/issues) counts. See
+[CONTRIBUTING.md](CONTRIBUTING.md) to run it locally and the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## License
 

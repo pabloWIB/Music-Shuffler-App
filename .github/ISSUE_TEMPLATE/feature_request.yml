@@ -1,0 +1,15 @@
+name: Idea · Propuesta
+description: Suggest an improvement · Sugiere una mejora
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve? · ¿Qué problema resuelve?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea · Tu idea
+      description: Keep in mind the app runs only in the browser and is used by people who are not technical · La app corre solo en el navegador y la usan personas que no son técnicas
