@@ -1,17 +1,81 @@
-/* Page shell: header, main column, footer. Mobile-first. */
+/* Page shell: backdrop, header, main column, footer. Mobile-first. */
 
-/* One solid brand rule across the top, the same device the OG image uses. */
+/* Coloured glows behind everything, fixed so they stay while the page scrolls. */
 body {
-  border-top: 8px solid var(--color-brand);
+  background:
+    radial-gradient(55% 38% at 8% 0%, rgba(255, 95, 168, 0.3), transparent 70%),
+    radial-gradient(45% 32% at 100% 14%, rgba(155, 108, 255, 0.24), transparent 70%),
+    radial-gradient(70% 40% at 60% 108%, rgba(212, 240, 106, 0.14), transparent 70%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+/* Backdrop: blurred, grainy figures that sit behind the content. Decorative. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.figure {
+  position: absolute;
+  height: auto;
+  filter: blur(16px);
+  opacity: 0.55;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.figure--lime {
+  width: min(46vw, 420px);
+  left: -9%;
+  bottom: -12%;
+}
+
+.figure--violet {
+  width: min(30vw, 280px);
+  right: -6%;
+  top: 9%;
+  opacity: 0.45;
+  animation-delay: -5s;
+}
+
+.figure--pink {
+  width: min(24vw, 220px);
+  right: 9%;
+  bottom: -6%;
+  opacity: 0.4;
+  animation-delay: -9s;
+}
+
+/* Film grain over the whole stage, like the reference portraits. */
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-18px) scale(1.03);
+  }
 }
 
 .page {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
   width: 100%;
   max-width: calc(var(--column) + 2 * var(--space-3));
-  min-height: calc(100vh - 8px);
+  min-height: 100vh;
   margin: 0 auto;
   padding: var(--space-5) var(--space-3) var(--space-4);
 }
@@ -22,16 +86,48 @@ body {
   gap: var(--space-3);
 }
 
+.site-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+/* The round "avatar" of the reference, holding a note instead of a face. */
+.site-header__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  color: var(--color-accent-ink);
+  background: radial-gradient(circle at 30% 25%, #f7ffd0, var(--color-accent) 55%, #8fc53a);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(212, 240, 106, 0.16);
+}
+
+.site-header__privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap-target);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+}
+
 .site-header__lead {
   font-size: var(--font-size-base);
   color: var(--color-text-muted);
   max-width: 40ch;
-}
-
-.site-header__privacy {
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: var(--color-text);
 }
 
 .site-main {
@@ -68,10 +164,10 @@ body {
 }
 
 .notice__code {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: var(--font-size-lg);
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--color-accent);
 }
 
 .notice__action {
@@ -94,5 +190,26 @@ body {
     max-width: calc(var(--column) + 2 * var(--space-4));
     gap: var(--space-6);
     padding-top: var(--space-7);
+  }
+}
+
+/* On a phone the figures shrink to the corners so they never sit under text. */
+@media (max-width: 600px) {
+  .figure--lime {
+    width: 70vw;
+    left: -30%;
+    bottom: -8%;
+    opacity: 0.4;
+  }
+
+  .figure--violet {
+    width: 46vw;
+    right: -22%;
+    top: 4%;
+    opacity: 0.35;
+  }
+
+  .figure--pink {
+    display: none;
   }
 }

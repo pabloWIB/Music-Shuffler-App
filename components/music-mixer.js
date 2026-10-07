@@ -2,12 +2,14 @@
 
 import { useCallback, useRef, useState } from "react";
 import { DropZone } from "./drop-zone";
+import { PlayIcon } from "./icons";
 import { buildMixedName, mergeNewAudioFiles } from "../lib/audio";
 import { shuffle } from "../lib/shuffle";
 import { createZipBlob, downloadBlob } from "../lib/zip";
 
 const ZIP_FILENAME = "musica-mezclada.zip";
 const PREVIEW_LENGTH = 5;
+const STEP_CHIPS = ["Agrega", "Mezcla", "Descarga"];
 const ERROR_MESSAGE =
   "No se pudo preparar el archivo. Intenta de nuevo con menos canciones a la vez.";
 const NOTHING_ADDED_MESSAGE =
@@ -97,8 +99,25 @@ export function MusicMixer() {
   if (zipping) downloadLabel = "Preparando…";
   else if (done) downloadLabel = "Descargar otra vez";
 
+  // Which step the user is on, for the chips row: 4 means all three are done.
+  const current = !hasFiles ? 1 : !mixed ? 2 : !done ? 3 : 4;
+
   return (
     <>
+      <ol className="chips" aria-hidden="true">
+        {STEP_CHIPS.map((label, index) => {
+          const number = index + 1;
+          let state = "";
+          if (number === current) state = " chip--active";
+          else if (number < current) state = " chip--done";
+          return (
+            <li key={label} className={`chip${state}`}>
+              {number} · {label}
+            </li>
+          );
+        })}
+      </ol>
+
       <ol className="steps">
         <Step
           number={1}
@@ -249,22 +268,30 @@ function OrderPreview({ entries }) {
 
   return (
     <div className="preview">
-      <p className="preview__title">Así quedó el orden</p>
+      <div className="preview__head">
+        <p className="preview__title">Así quedó el orden</p>
+        {rest > 0 && (
+          <p className="preview__more">
+            y {rest} {rest === 1 ? "canción más" : "canciones más"}
+          </p>
+        )}
+      </div>
       <ol className="preview__list">
         {shown.map(({ file, newName }) => (
           <li key={newName}>
-            <span className="preview__position">
+            <span className="preview__cover" aria-hidden="true">
               {newName.slice(0, newName.indexOf(" - "))}
-            </span>{" "}
-            <span className="preview__name">{file.name}</span>
+            </span>
+            <span className="preview__text">
+              <span className="preview__name">{file.name}</span>
+              <span className="preview__file">{newName}</span>
+            </span>
+            <span className="preview__play" aria-hidden="true">
+              <PlayIcon />
+            </span>
           </li>
         ))}
       </ol>
-      {rest > 0 && (
-        <p className="preview__more">
-          y {rest} {rest === 1 ? "canción más" : "canciones más"}
-        </p>
-      )}
     </div>
   );
 }

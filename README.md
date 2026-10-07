@@ -7,7 +7,7 @@ Renames a folder of songs with random leading numbers and returns them as a ZIP,
 [![Next.js](https://img.shields.io/badge/Next.js-15.5.18-000000)](https://nextjs.org)
 
 <p align="center">
-  <a href="https://mezcladordemusica.wib.digital"><img src="docs/demo.gif" alt="Adding 12 songs grouped by genre, pressing Mezclar and downloading them shuffled" width="560"></a>
+  <a href="https://mezcladordemusica.wib.digital"><img src="docs/demo.gif" alt="Adding 12 songs grouped by genre, pressing Mezclar and downloading them shuffled, in the dark music-app design" width="560"></a>
   &nbsp;
   <img src="docs/capturas/movil-2-mezclado.png" alt="Mezclador de Música en el celular" width="200">
 </p>
@@ -43,7 +43,7 @@ A browser cannot rename files in place on a USB drive, so the app returns rename
 | UI library | React | 18.3.1 | Component state |
 | Archiving | JSZip | 3.10.1 | Builds the ZIP in the browser |
 | Styling | Plain CSS | — | Custom properties, no framework |
-| Type | Atkinson Hyperlegible Next + Mono | — | Designed for low-vision readers, self-hosted by `next/font` |
+| Type | Atkinson Hyperlegible Next + Mono, Plus Jakarta Sans | — | Atkinson (drawn for low-vision readers) for body text and numbers, Plus Jakarta Sans for titles and buttons; all self-hosted by `next/font` |
 | Language | JavaScript | — | No TypeScript in this project |
 
 Three runtime dependencies in total. `next/font` downloads the fonts at build time and serves them from the site, so the page makes no third-party requests at runtime.
@@ -137,9 +137,9 @@ next.config.js
 
 The end user is elderly, Spanish-speaking and has reduced vision, so the spec in `docs/requisitos.md` sets a 7:1 contrast target — one level above WCAG AA.
 
-- Every text colour measured against its rendered background clears 7:1. The lowest is 7.61:1 (error text on its tint).
-- The UI is flat: no shadows and no gradients, so every edge is a solid line with real contrast.
-- Each step's number square shows where the user is: blue for the step to do now, ink once done, grey until it can be reached. Disabled buttons keep a readable label and a line below says what to do first.
+- Every text colour measured against its rendered background clears 7:1. The lowest is 8.6:1 (the muted "y 7 canciones más" on the order panel).
+- Dark theme in the style of a music app: near-black background, lime accent, lilac card for step 1. Text always sits on a solid card or the plain background. The coloured glows and blurred figures behind it are decorative, hidden from screen readers, and shrink to the corners on phones.
+- Each step's number circle shows where the user is: lime for the step to do now, a lime outline once done, grey until it can be reached. The chips above the steps say the same. Disabled buttons keep a readable label and a line below says what to do first.
 - The drop zone is a `<label>` over a focusable file input, so click, Enter and Space all work without custom key handling.
 - Primary buttons are 72px tall; every other interactive target is at least 44×44px.
 - One polite live region announces each change (songs added, new first song after a shuffle, download ready); errors use `role="alert"`.
