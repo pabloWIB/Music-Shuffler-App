@@ -19,29 +19,36 @@ export default function OpengraphImage() {
           justifyContent: "center",
           gap: 32,
           padding: 96,
-          background: "#f6f4ef",
-          borderBottom: "24px solid #002ba4",
+          color: "#ffffff",
+          backgroundColor: "#0b0b10",
+          backgroundImage:
+            "radial-gradient(circle at 8% 0%, rgba(255,95,168,0.45), transparent 45%), radial-gradient(circle at 100% 30%, rgba(155,108,255,0.38), transparent 40%), radial-gradient(circle at 70% 120%, rgba(212,240,106,0.3), transparent 45%)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            fontSize: 28,
-            fontWeight: 700,
-            letterSpacing: 6,
-            textTransform: "uppercase",
-            color: "#002ba4",
-          }}
-        >
-          001 · 002 · 003
+        <div style={{ display: "flex", gap: 16 }}>
+          {["1 · Agrega", "2 · Mezcla", "3 · Descarga"].map((label, i) => (
+            <div
+              key={label}
+              style={{
+                display: "flex",
+                padding: "14px 28px",
+                fontSize: 28,
+                fontWeight: 700,
+                borderRadius: 999,
+                color: i === 1 ? "#0b0b10" : "#ffffff",
+                backgroundColor: i === 1 ? "#d4f06a" : "rgba(255,255,255,0.1)",
+              }}
+            >
+              {label}
+            </div>
+          ))}
         </div>
         <div
           style={{
             display: "flex",
-            fontSize: 86,
+            fontSize: 92,
             fontWeight: 800,
-            letterSpacing: -2,
-            color: "#16150f",
+            letterSpacing: -3,
           }}
         >
           {site.name}
@@ -51,7 +58,7 @@ export default function OpengraphImage() {
             display: "flex",
             fontSize: 38,
             lineHeight: 1.4,
-            color: "#4b483f",
+            color: "#bdbdcb",
             maxWidth: 900,
           }}
         >

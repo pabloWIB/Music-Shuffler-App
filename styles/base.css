@@ -1,28 +1,44 @@
 /* Design tokens, reset and base typography. Loaded first. */
 
 :root {
-  /* Brand — sampled from the WIB app icon (#002BA4). 11:1 on white and 10:1 on
-     the page background, so it carries text as well as fills. */
-  --color-brand: #002ba4;
-  --color-brand-dark: #001d73;
-  --color-brand-darker: #00145a;
-  --color-brand-wash: #e9edf8;
-
-  /* Neutrals — warm paper and near-black ink. Every text pairing clears 7:1. */
-  --color-bg: #f6f4ef;
-  --color-surface: #ffffff;
-  --color-text: #16150f;
-  --color-text-muted: #4b483f;
-  --color-line: #d9d4c7;
-  --color-line-strong: #16150f;
+  /* Night: a near-black stage like a music app, with lime as the one accent.
+     Every text pairing below clears 7:1; measured on the rendered page the
+     lowest is 8.6:1 (README, Accessibility). */
+  --color-bg: #0b0b10;
+  --color-surface: #16161d;
+  --color-surface-2: #212129;
+  --color-text: #ffffff;
+  --color-text-muted: #bdbdcb;
+  --color-line: #2e2e39;
+  --color-line-strong: #4a4a58;
   /* Pending step numbers and disabled outlines only; never body text. */
-  --color-idle: #8a8576;
+  --color-idle: #8f8fa0;
+
+  /* Accent: lime pills with near-black ink (15:1). */
+  --color-accent: #d4f06a;
+  --color-accent-hover: #e2f78f;
+  --color-accent-press: #bfdc4f;
+  --color-accent-ink: #0b0b10;
+  --color-accent-wash: rgba(212, 240, 106, 0.12);
+
+  /* The lilac card of step 1, its plum button and the background glows. */
+  --color-lilac: #cdb4f6;
+  --color-lilac-ink: #1b1030;
+  --color-lilac-muted: #3b2a57;
+  --color-plum: #2b1747;
+  --color-plum-hover: #3d2163;
+  --color-pink: #ff5fa8;
+  --color-violet: #9b6cff;
+
+  /* Kept so older selectors (404, links, focus) follow the new palette. */
+  --color-brand: var(--color-accent);
+  --color-brand-dark: var(--color-accent-press);
 
   /* Semantic */
-  --color-success: #0f5226;
-  --color-success-bg: #e3efe2;
-  --color-danger: #8f1520;
-  --color-danger-bg: #f9e6e4;
+  --color-success: #d4f06a;
+  --color-success-bg: rgba(212, 240, 106, 0.1);
+  --color-danger: #ffa3b3;
+  --color-danger-bg: rgba(255, 95, 130, 0.12);
 
   /* Spacing scale — 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 */
   --space-1: 4px;
@@ -34,24 +50,29 @@
   --space-7: 64px;
   --space-8: 96px;
 
-  /* Type — the Atkinson variables come from next/font in app/layout.js. */
+  /* Type. Body stays in Atkinson Hyperlegible (drawn for low-vision readers);
+     titles take Plus Jakarta Sans, the rounded geometric of music apps. */
   --font-sans: var(--font-atkinson), system-ui, "Segoe UI", Roboto, Arial,
     sans-serif;
+  --font-display: var(--font-jakarta), var(--font-sans);
   --font-mono: var(--font-atkinson-mono), ui-monospace, "Cascadia Mono",
     Consolas, monospace;
   --font-size-xs: 0.875rem;
   --font-size-sm: 1rem;
   --font-size-base: 1.125rem;
   --font-size-lg: 1.5rem;
-  --font-size-xl: 2.25rem;
-  --font-size-2xl: 3rem;
-  --line-height-tight: 1.15;
+  --font-size-xl: 2.5rem;
+  --font-size-2xl: 3.25rem;
+  --line-height-tight: 1.12;
   --line-height-base: 1.55;
 
-  /* Shape and motion. Flat on purpose: no shadows, no gradients. */
-  --radius: 4px;
+  /* Shape and motion: soft cards and pill buttons. */
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 30px;
+  --radius-pill: 999px;
   --border: 2px;
-  --transition: 150ms ease;
+  --transition: 160ms ease;
 
   /* Layout */
   --column: 640px;
@@ -70,6 +91,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  color-scheme: dark;
 }
 
 /* Base */
@@ -85,16 +107,19 @@ body {
 }
 
 h1 {
+  font-family: var(--font-display);
   font-size: var(--font-size-xl);
-  font-weight: 800;
+  font-weight: 700;
   line-height: var(--line-height-tight);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.025em;
 }
 
 h2 {
+  font-family: var(--font-display);
   font-size: var(--font-size-lg);
   font-weight: 700;
   line-height: var(--line-height-tight);
+  letter-spacing: -0.01em;
 }
 
 p {
@@ -107,18 +132,18 @@ button {
 }
 
 a {
-  color: var(--color-brand);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  color: var(--color-text);
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
 
 a:hover {
-  color: var(--color-brand-dark);
-  text-decoration-thickness: 2px;
+  color: var(--color-accent);
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-brand);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 

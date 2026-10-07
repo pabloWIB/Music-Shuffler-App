@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import {
   Atkinson_Hyperlegible_Mono,
   Atkinson_Hyperlegible_Next,
+  Plus_Jakarta_Sans,
 } from "next/font/google";
 
 // Atkinson Hyperlegible was drawn by the Braille Institute for low-vision
@@ -15,6 +16,14 @@ const sans = Atkinson_Hyperlegible_Next({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-atkinson",
+});
+
+// Titles, chips and buttons: the rounded geometric sans of music apps. Body
+// text stays in Atkinson, so long reading keeps the low-vision face.
+const display = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jakarta",
 });
 
 // The mono cut sets the 001, 002, 003 numbering: the numbers are the product.
@@ -74,7 +83,7 @@ const personSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="es" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <head>
         <script
           type="application/ld+json"

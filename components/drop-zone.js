@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { collectDroppedFiles } from "../lib/drop";
+import { Figure } from "./figure";
 
 const INPUT_ID = "song-input";
 const HINT_ID = "song-input-hint";
@@ -78,6 +79,14 @@ export function DropZone({ inputRef, compact, onFilesAdded }) {
         aria-describedby={compact ? undefined : HINT_ID}
         onChange={handleChange}
       />
+      {!compact && (
+        <Figure
+          id="fig-card"
+          className="dropzone__figure"
+          from="#ff5fa8"
+          to="#6d3cff"
+        />
+      )}
       <label className="dropzone__label" htmlFor={INPUT_ID}>
         <span className="dropzone__text">{text}</span>
         {!compact && (
@@ -86,6 +95,7 @@ export function DropZone({ inputRef, compact, onFilesAdded }) {
           </span>
         )}
         <span className="dropzone__button" aria-hidden="true">
+          {!compact && <span className="dropzone__plus">+</span>}
           {compact ? "Elegir más" : "Elegir canciones"}
         </span>
       </label>

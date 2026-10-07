@@ -193,3 +193,30 @@ de producción servido con `next start`, en Chrome headless controlado por CDP.
 - Todas las rutas internas relativas y en minúsculas.
 - No se creó `vercel.json` ni ningún archivo de hosting: no se indicó destino y
   el despliegue actual en Vercel funciona sin configuración.
+
+---
+
+## 2026-10-07 — Tema oscuro de app de música
+
+Rediseño visual pedido por Pablo a partir de una referencia de app de música
+(fondo casi negro, acento lima, tarjeta lila, botones de pastilla) y de unas
+siluetas borrosas con grano como personajes de fondo. La lógica no cambió.
+
+- **Paleta:** fondo `#0b0b10`, tarjetas `#16161d`, acento lima `#d4f06a` con
+  tinta `#0b0b10` (15:1), tarjeta lila `#cdb4f6` con tinta `#1b1030`. Brillos
+  rosa, morado y lima detrás, fijos al desplazarse.
+- **Personajes de fondo:** `components/figure.js` dibuja una silueta de busto en
+  SVG con degradado; el CSS la desenfoca y el fondo le pone grano. No se usa
+  ninguna foto. Tres en el fondo (lima, morada y rosa) y una en la tarjeta del
+  paso 1. Son decorativas (`aria-hidden`) y en celular se van a las esquinas.
+- **Letra:** el texto sigue en Atkinson Hyperlegible; títulos, pastillas y
+  botones pasan a Plus Jakarta Sans.
+- **Nuevo:** fila de pastillas con el paso actual (`1 · Agrega`, `2 · Mezcla`,
+  `3 · Descarga`), la lista del orden con miniaturas de color y el nombre nuevo
+  de cada archivo, y la imagen para compartir (`opengraph-image.js`) en oscuro.
+- **Contraste medido** sobre el build servido con `next start`, a 390 y 1440 px,
+  vacío y mezclado: ningún texto baja de 8.6:1.
+- **Video:** `docs/video/` tiene el guion para Grabador-Tutoriales (horizontal y
+  vertical) y las 12 canciones de prueba, con semilla fija para que el orden
+  salga siempre igual. `docs/demo.gif` y `docs/capturas/` se rehicieron.
+
