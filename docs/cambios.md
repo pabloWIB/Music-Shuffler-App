@@ -220,3 +220,9 @@ siluetas borrosas con grano como personajes de fondo. La lógica no cambió.
   vertical) y las 12 canciones de prueba, con semilla fija para que el orden
   salga siempre igual. `docs/demo.gif` y `docs/capturas/` se rehicieron.
 
+### Ajuste del mismo día: sin siluetas en el fondo
+
+Pablo pidió quitar las tres siluetas borrosas del fondo («las sombras de
+fondo»). Quedan los brillos de color, el grano y la silueta de la tarjeta lila
+del paso 1. `docs/demo.gif` y `docs/capturas/` se rehicieron sin ellas.
+

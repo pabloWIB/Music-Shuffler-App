@@ -1,16 +1,11 @@
 import { MusicMixer } from "../components/music-mixer";
-import { Figure } from "../components/figure";
 import { LockIcon, NoteIcon } from "../components/icons";
 import { site } from "../lib/site";
 
 export default function HomePage() {
   return (
     <>
-      <div className="backdrop" aria-hidden="true">
-        <Figure id="fig-lime" className="figure figure--lime" from="#2fd34a" to="#d4f06a" />
-        <Figure id="fig-violet" className="figure figure--violet" from="#6d3cff" to="#d2b6ff" />
-        <Figure id="fig-pink" className="figure figure--pink" from="#ff3d8b" to="#ffc2dc" />
-      </div>
+      <div className="backdrop" aria-hidden="true" />
 
       <div className="page">
         <header className="site-header">
