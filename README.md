@@ -138,7 +138,7 @@ next.config.js
 The end user is elderly, Spanish-speaking and has reduced vision, so the spec in `docs/requisitos.md` sets a 7:1 contrast target — one level above WCAG AA.
 
 - Every text colour measured against its rendered background clears 7:1. The lowest is 8.6:1 (the muted "y 7 canciones más" on the order panel).
-- Dark theme in the style of a music app: near-black background, lime accent, lilac card for step 1. Text always sits on a solid card or the plain background. The coloured glows and blurred figures behind it are decorative, hidden from screen readers, and shrink to the corners on phones.
+- Dark theme in the style of a music app: near-black background, lime accent, lilac card for step 1. Text always sits on a solid card or the plain background; the coloured glows behind it are decorative.
 - Each step's number circle shows where the user is: lime for the step to do now, a lime outline once done, grey until it can be reached. The chips above the steps say the same. Disabled buttons keep a readable label and a line below says what to do first.
 - The drop zone is a `<label>` over a focusable file input, so click, Enter and Space all work without custom key handling.
 - Primary buttons are 72px tall; every other interactive target is at least 44×44px.

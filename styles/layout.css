@@ -10,43 +10,13 @@ body {
   background-attachment: fixed;
 }
 
-/* Backdrop: blurred, grainy figures that sit behind the content. Decorative. */
+/* Backdrop: only the film grain over the glows. Decorative. */
 .backdrop {
   position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-}
-
-.figure {
-  position: absolute;
-  height: auto;
-  filter: blur(16px);
-  opacity: 0.55;
-  animation: drift 14s ease-in-out infinite alternate;
-}
-
-.figure--lime {
-  width: min(46vw, 420px);
-  left: -9%;
-  bottom: -12%;
-}
-
-.figure--violet {
-  width: min(30vw, 280px);
-  right: -6%;
-  top: 9%;
-  opacity: 0.45;
-  animation-delay: -5s;
-}
-
-.figure--pink {
-  width: min(24vw, 220px);
-  right: 9%;
-  bottom: -6%;
-  opacity: 0.4;
-  animation-delay: -9s;
 }
 
 /* Film grain over the whole stage, like the reference portraits. */
@@ -56,15 +26,6 @@ body {
   inset: 0;
   opacity: 0.09;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@keyframes drift {
-  from {
-    transform: translateY(0) scale(1);
-  }
-  to {
-    transform: translateY(-18px) scale(1.03);
-  }
 }
 
 .page {
@@ -190,26 +151,5 @@ body {
     max-width: calc(var(--column) + 2 * var(--space-4));
     gap: var(--space-6);
     padding-top: var(--space-7);
-  }
-}
-
-/* On a phone the figures shrink to the corners so they never sit under text. */
-@media (max-width: 600px) {
-  .figure--lime {
-    width: 70vw;
-    left: -30%;
-    bottom: -8%;
-    opacity: 0.4;
-  }
-
-  .figure--violet {
-    width: 46vw;
-    right: -22%;
-    top: 4%;
-    opacity: 0.35;
-  }
-
-  .figure--pink {
-    display: none;
   }
 }
