@@ -13,14 +13,14 @@ Renames a folder of songs with random leading numbers and returns them as a ZIP,
 </p>
 
 > **En español:** arrastra tus canciones, toca **Mezclar** y descarga un ZIP con los archivos renombrados
-> `001 - `, `002 - `… en orden aleatorio. Al copiarlos a la USB, el radio del carro los toca mezclados en vez
+> `01 - `, `02 - `… (o `001 - ` si son cientos) en orden aleatorio. Al copiarlos a la USB, el radio del carro los toca mezclados en vez
 > de agrupados por género. Todo corre en el navegador: las canciones no salen de tu computador.
 
 ## Description
 
 A car stereo reading songs off a USB stick sorts them by filename. If the music is organised in folders by genre — vallenato, tango, salsa, cumbia — the stereo plays forty vallenatos, then forty tangos. There is no shuffle button on the unit, and the owner is not going to rename four hundred files by hand.
 
-This app does the renaming. Drop the songs in, and it assigns each one a random position and prefixes the filename with a zero-padded number: `001 - `, `002 - `, and so on. Copy the result back to the USB stick and the stereo's alphabetical order becomes the shuffled order.
+This app does the renaming. Drop the songs in, and it assigns each one a random position and prefixes the filename with a zero-padded number as wide as the song count: `01 - `, `02 - `… for a dozen songs, `001 - ` for a few hundred. Copy the result back to the USB stick and the stereo's alphabetical order becomes the shuffled order.
 
 A browser cannot rename files in place on a USB drive, so the app returns renamed copies inside a ZIP rather than modifying the originals. Nothing is uploaded: the files are read, renamed and zipped entirely in the browser. There is no backend, no database and no account.
 
@@ -104,7 +104,9 @@ app/
 └── apple-icon.png       # 180x180
 components/
 ├── music-mixer.js       # Client Component: all the state lives here
-└── drop-zone.js         # <label> over a hidden file input
+├── drop-zone.js         # <label> over a hidden file input
+├── figure.js            # Blurred silhouette (SVG) inside the step 1 card
+└── icons.js             # Note, lock and play icons, all decorative
 lib/
 ├── audio.js             # File-type detection and the renaming rule
 ├── drop.js              # Reads dropped folders into a flat file list
@@ -113,15 +115,23 @@ lib/
 └── site.js              # Name, URL, description, brand colours
 styles/
 ├── base.css             # Custom properties, reset, base typography
-├── layout.css           # Page shell: header, main, footer
-└── components.css       # Steps, dropzone, buttons, preview, messages, progress
+├── layout.css           # Page shell: glows, grain, header, main, footer
+└── components.css       # Step chips, steps, dropzone, buttons, preview, messages, progress
 public/
 ├── icon-192.png         # PWA icon
 └── icon-512.png         # PWA icon
 docs/
 ├── auditoria.md         # Pre-reorganisation audit
-├── cambios.md           # Change log for the reorganisation
-└── requisitos.md        # Original build specification
+├── cambios.md           # Change log, including the dark redesign
+├── requisitos.md        # Original build specification
+├── demo.gif             # The GIF at the top of this README
+├── capturas/            # Screenshots, desktop and phone
+└── video/               # Script for the demo video and 12 silent test songs
+.github/
+├── ISSUE_TEMPLATE/      # Bug and idea forms
+└── pull_request_template.md
+CODE_OF_CONDUCT.md       # Contributor Covenant 2.1
+CONTRIBUTING.md          # How to run it and the ground rules
 next.config.js
 ```
 
@@ -144,6 +154,21 @@ The end user is elderly, Spanish-speaking and has reduced vision, so the spec in
 - Primary buttons are 72px tall; every other interactive target is at least 44×44px.
 - One polite live region announces each change (songs added, new first song after a shuffle, download ready); errors use `role="alert"`.
 - Verified with no horizontal scroll at 360, 480, 768, 1024 and 1440px.
+
+## Demo GIF and video
+
+The GIF at the top and the tutorial videos are recorded from the production build with
+[Grabador-Tutoriales](https://github.com/pabloWIB/Grabador-Tutoriales). The script is
+`docs/video/mezclador.js` (16:9) or `docs/video/mezclador-celular.js` (9:16). It picks the 12
+one-second silent songs in `docs/video/canciones/` and seeds `Math.random`, so the mixed order
+is the same on every recording.
+
+```bash
+npm run build && npx next start -p 3077
+# then, inside Grabador-Tutoriales:
+node grabar.js <this repo>/docs/video/mezclador.js salidas/mezclador
+python montar.py salidas/mezclador --fondo negro --color "#D4F06A"
+```
 
 ## Deployment
 
